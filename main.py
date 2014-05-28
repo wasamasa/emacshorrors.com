@@ -14,7 +14,6 @@ from pyphen import Pyphen
 
 # TODO investigate in other deployment options compatible with
 # uberspace like FCGI (or [U]WSGI for other hosters)
-# TODO add a binary akin to nikola's option for a new post
 # TODO add route for atom feed made with flask contrib module
 
 # deployment blurb
@@ -43,14 +42,12 @@ class HTML5Translator(html4css1.HTMLTranslator):
 
 def ensure_metadata(metadata):
     """If the metadata is well-formed, return True."""
-    # TODO add field for status, e.g. 'unpublished' discards
-    # the article (or only displays it in a preview section)
-    # TODO if the date is in the future, don't process the
-    # post either
-    for key in ['title', 'date']:
-        if key not in metadata:
-            return False
-    return True
+    if ('title' in metadata and 'date' in metadata
+        and (datetime.now() - datetime.strptime(
+            metadata['date'], '%Y-%m-%d %H:%M:%S')).total_seconds() > 0
+        and 'published' in metadata and metadata['published'] == 'yes'):
+            return True
+    return False
 
 
 @app.template_filter()
@@ -166,6 +163,9 @@ def show_index(page=None):
             return flask.render_template('error.tmpl', error="Invalid index")
     else:
         return flask.render_template('error.tmpl', error="No posts yet")
+
+
+# add route for unpublished posts
 
 
 @app.route('/about')
