@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
-from glob import glob
 from math import ceil
 from pathlib import Path
 
@@ -105,7 +104,7 @@ def parse_post(path):
 
 def parse_posts():
     """Parse all valid ReST posts."""
-    post_filenames = glob(str(Path('posts') / Path('*.rst')))
+    post_filenames = Path('posts').glob('*.rst')
     unsorted_posts = []
     for post_filename in post_filenames:
         slug = Path(post_filename).stem
