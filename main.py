@@ -14,7 +14,7 @@ from pyphen import Pyphen
 
 # TODO investigate in other deployment options compatible with
 # uberspace like FCGI (or [U]WSGI for other hosters)
-# TODO add route for atom feed made with flask contrib module
+# TODO add route for atom feed made with werkzeug contrib module
 
 # deployment blurb
 app = flask.Flask(__name__)
@@ -107,14 +107,14 @@ def parse_post(path):
     return metadata, content
 
 
-def parse_posts():
+def parse_posts(published=True):
     """Parse all valid ReST posts."""
-    post_filenames = Path('posts').glob('*.rst')
+    post_filenames = [str(p) for p in Path('posts').glob('*.rst')]
     unsorted_posts = []
     for post_filename in post_filenames:
         slug = Path(post_filename).stem
         metadata, content = parse_post(post_filename)
-        if ensure_metadata(metadata):
+        if ensure_metadata(metadata, published=published):
             post = metadata
             metadata['content'] = content
             metadata['slug'] = slug
@@ -147,6 +147,7 @@ def reverse_chunks(items, pagination):
 
 @app.route('/')
 @app.route('/posts')
+# figure out how to deal with '/posts/' (trailing slash)
 @app.route('/posts/<int:page>')
 def show_index(page=None):
     """Display the appropriate paginated page.
@@ -173,7 +174,14 @@ def show_index(page=None):
         return flask.render_template('error.tmpl', error="No posts yet")
 
 
-# add route for unpublished posts
+@app.route('/unpublished')
+def show_unpublished():
+    """Display unpaginated view of unpublished posts."""
+    posts = parse_posts(published=False)
+    if posts:
+        return flask.render_template('unpublished.tmpl', posts=posts)
+    else:
+        return flask.render_template('error.tmpl', error="No unpublished posts")
 
 
 @app.route('/about')
