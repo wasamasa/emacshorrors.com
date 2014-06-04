@@ -3,6 +3,7 @@
 from datetime import datetime
 from math import ceil
 from pathlib import Path
+from urllib.parse import urljoin
 
 import docutils.core
 import docutils.io
@@ -10,13 +11,12 @@ import docutils.nodes
 from docutils.writers import html4css1
 import flask
 from pyphen import Pyphen
+from werkzeug.contrib.atom import AtomFeed
 
 
 # TODO investigate in other deployment options compatible with
 # uberspace like FCGI (or [U]WSGI for other hosters)
-# TODO add route for atom feed made with werkzeug contrib module
 
-# deployment blurb
 app = flask.Flask(__name__)
 
 
@@ -174,32 +174,6 @@ def show_index(page=None):
         return flask.render_template('error.tmpl', error="No posts yet")
 
 
-@app.route('/unpublished')
-def show_unpublished():
-    """Display unpaginated view of unpublished posts."""
-    posts = parse_posts(published=False)
-    if posts:
-        return flask.render_template('unpublished.tmpl', posts=posts)
-    else:
-        return flask.render_template('error.tmpl', error="No unpublished posts")
-
-
-@app.route('/about')
-def show_about():
-    """Display an about page."""
-    return flask.render_template('about.tmpl')
-
-
-@app.route('/archive')
-def show_archive():
-    """Display an archive of all posts."""
-    posts = parse_posts()
-    if posts:
-        return flask.render_template('archive.tmpl', posts=posts)
-    else:
-        return flask.render_template('error.tmpl', error="No posts yet")
-
-
 @app.route('/post/<post_slug>')
 def show_post(post_slug):
     """Display a single post."""
@@ -215,12 +189,60 @@ def show_post(post_slug):
         return flask.render_template('error.tmpl', error="No such post")
 
 
+@app.route('/unpublished')
+def show_unpublished():
+    """Display unpaginated view of unpublished posts."""
+    posts = parse_posts(published=False)
+    if posts:
+        return flask.render_template('unpublished.tmpl', posts=posts)
+    else:
+        return flask.render_template('error.tmpl', error="No unpublished posts")
+
+
+@app.route('/archive')
+def show_archive():
+    """Display an archive of all posts."""
+    posts = parse_posts()
+    if posts:
+        return flask.render_template('archive.tmpl', posts=posts)
+    else:
+        return flask.render_template('error.tmpl', error="No posts yet")
+
+
+@app.route('/feed')
+def atom_feed():
+    """Display an atom feed of all published posts."""
+    posts = parse_posts()
+    atom_feed = AtomFeed(
+        title='My Blog', title_type='text', author='Vasilij Schneidermann',
+        subtitle='Technical Writings', url=flask.request.url,
+        feed_url=flask.request.url_root)
+    for post in list(reversed(posts))[:10]:
+        title = post['title']
+        content = post['content'].replace('­', '')
+        url = urljoin(flask.request.url_root, '/posts/{}'.format(post['slug']))
+        updated = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
+        published = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
+        atom_feed.add(
+            title=title, title_type='text', content=content, content_type='html',
+            url=url, updated=updated, published=published)
+    if posts:
+        return atom_feed.to_string()
+    else:
+        return flask.render_template('error.tmpl', error="No posts yet")
+
+
+@app.route('/about')
+def show_about():
+    """Display an about page."""
+    return flask.render_template('about.tmpl')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     """404 error handler."""
     return flask.render_template('error.tmpl', error="404 Page not found"), 404
 
 
-# more boilerplate code
 if __name__ == '__main__':
     app.run(debug=True)
