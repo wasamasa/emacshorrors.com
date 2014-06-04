@@ -134,7 +134,7 @@ def reverse_chunks(items, pagination):
     chunks = []
     pages = ceil(len(items) / pagination)
     if pages <= 1:
-        chunks.append(items)
+        chunks.append(reversed(items))
     else:
         start = len(items) - pagination
         end = len(items)
@@ -147,7 +147,6 @@ def reverse_chunks(items, pagination):
 
 @app.route('/')
 @app.route('/posts')
-# figure out how to deal with '/posts/' (trailing slash)
 @app.route('/posts/<int:page>')
 def show_index(page=None):
     """Display the appropriate paginated page.
