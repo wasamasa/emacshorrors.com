@@ -14,6 +14,13 @@ from pyphen import Pyphen
 from werkzeug.contrib.atom import AtomFeed
 
 
+DISPLAY_FORMAT = '%Y-%m-%d'
+EXACT_FORMAT = '%Y-%m-%d %H:%M:%S'
+BLOG_AUTHOR = "Vasilij Schneidermann"
+BLOG_TITLE = "My Blog"
+BLOG_SUBTITLE = "Technical Writings"
+
+
 # TODO investigate in other deployment options compatible with
 # uberspace like FCGI (or [U]WSGI for other hosters)
 # TODO tags, categories, both + template support
@@ -243,8 +250,8 @@ def atom_feed():
     """Display an atom feed of all published posts."""
     posts = processed_posts(parse_posts(), published=True, reverse=True)
     atom_feed = AtomFeed(
-        title='My Blog', title_type='text', author='Vasilij Schneidermann',
-        subtitle='Technical Writings', url=flask.request.url,
+        title=BLOG_TITLE, title_type='text', author=BLOG_AUTHOR,
+        subtitle=BLOG_SUBTITLE, url=flask.request.url,
         feed_url=flask.request.url_root)
     for post in posts[:10]:
         title = post['title']
