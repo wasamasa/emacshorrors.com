@@ -47,22 +47,16 @@ class HTML5Translator(html4css1.HTMLTranslator):
         self.body.append(encoded)
 
 
-def ensure_metadata(metadata, published=True):
+def ensure_metadata(metadata):
     """If the metadata is well-formed, return True."""
-    if 'title' in metadata and 'date' in metadata and 'published' in metadata:
-        timedelta = (datetime.now() - datetime.strptime(
-            metadata['date'], '%Y-%m-%d %H:%M:%S')).total_seconds() > 0
-        if metadata['published'] == 'yes' and timedelta:
-            if published:
-                return True
-            else:
-                return False
-        elif metadata['published'] == 'no' or not timedelta:
-            if published:
-                return False
-            else:
-                return True
+    if 'title' in metadata and 'date' in metadata:
+        return True
     return False
+
+
+@app.template_filter()
+def displayed_datetime(timestamp):
+    return datetime.strptime(timestamp, EXACT_FORMAT).strftime(DISPLAY_FORMAT)
 
 
 @app.template_filter()
