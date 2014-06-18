@@ -16,6 +16,13 @@ from werkzeug.contrib.atom import AtomFeed
 
 # TODO investigate in other deployment options compatible with
 # uberspace like FCGI (or [U]WSGI for other hosters)
+# TODO tags, categories, both + template support
+# TODO fix imprint design
+# TODO improve privacy statement
+# TODO turn feed into feeds and implement tag-specific feeds
+# TODO abstract these: about, imprint, privacy statement
+# TODO add license hint
+# TODO latex/mathjax? svg?
 
 app = flask.Flask(__name__)
 
