@@ -238,6 +238,18 @@ def show_about():
     return flask.render_template('about.tmpl')
 
 
+@app.route('/imprint')
+def show_imprint():
+    """Display an imprint page."""
+    return flask.render_template('imprint.tmpl')
+
+
+@app.route('/privacy')
+def show_privacy():
+    """Display a privacy statement page."""
+    return flask.render_template('privacy.tmpl')
+
+
 @app.errorhandler(404)
 def page_not_found(error):
     """404 error handler."""
