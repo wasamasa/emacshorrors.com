@@ -108,23 +108,52 @@ def parse_post(path):
     return metadata, content
 
 
-def parse_posts(published=True):
+def parse_posts():
     """Parse all valid ReST posts."""
     post_filenames = [str(p) for p in Path('posts').glob('*.rst')]
-    unsorted_posts = []
+    posts = []
     for post_filename in post_filenames:
         slug = Path(post_filename).stem
         metadata, content = parse_post(post_filename)
-        if ensure_metadata(metadata, published=published):
+        if ensure_metadata(metadata):
             post = metadata
-            metadata['content'] = content
-            metadata['slug'] = slug
-            unsorted_posts.append(post)
-
-    posts = []
-    if post_filenames:
-        posts = sorted(unsorted_posts, key=lambda post: post['date'])
+            post['content'] = content
+            post['slug'] = slug
+            if 'tags' in post:
+                post['tags'] = post['tags'].split(', ')
+            posts.append(post)
     return posts
+
+
+def processed_posts(posts, **criteria):
+    """Sort and filter posts by the given criteria."""
+    filtered_posts = [post for post in posts if fits_criteria(post, criteria)]
+    sorted_posts = sorted(filtered_posts, key=lambda post: post['date'])
+    if 'reverse' in criteria:
+        return list(reversed(sorted_posts))
+    return sorted_posts
+
+
+def fits_criteria(post, criteria):
+    """Check whether a posts fits all criteria."""
+    return all([fits_criterium(post, key, value) for key, value in criteria.items()])
+
+
+def fits_criterium(post, key, value):
+    """Check whether a posts fits a criterium defined by key and value."""
+    if key == 'published' and 'published' in post and 'date' in post:
+        timedelta = (datetime.now() - datetime.strptime(
+            post['date'], EXACT_FORMAT)).total_seconds() > 0
+        condition = post['published'] and timedelta
+        if value:
+            return condition
+        else:
+            return not condition
+    elif key == 'tags' and 'tags' in post:
+        return any(tag in post['tags'] for tag in value)
+    else:
+        # ignore non-existant keys
+        return True
 
 
 def reverse_chunks(items, pagination):
@@ -152,7 +181,7 @@ def reverse_chunks(items, pagination):
 def show_index(page=None):
     """Display the appropriate paginated page.
     If the page is None, display the first page."""
-    posts = parse_posts()
+    posts = processed_posts(parse_posts(), published=True)
     if posts:
         pagination = 5
         if not page:
@@ -192,7 +221,7 @@ def show_post(post_slug):
 @app.route('/unpublished')
 def show_unpublished():
     """Display unpaginated view of unpublished posts."""
-    posts = parse_posts(published=False)
+    posts = processed_posts(parse_posts(), published=False, reverse=True)
     if posts:
         return flask.render_template('unpublished.tmpl', posts=posts)
     else:
@@ -202,7 +231,7 @@ def show_unpublished():
 @app.route('/archive')
 def show_archive():
     """Display an archive of all posts."""
-    posts = parse_posts()
+    posts = processed_posts(parse_posts(), published=True, reverse=True)
     if posts:
         return flask.render_template('archive.tmpl', posts=posts)
     else:
@@ -212,12 +241,12 @@ def show_archive():
 @app.route('/feed')
 def atom_feed():
     """Display an atom feed of all published posts."""
-    posts = parse_posts()
+    posts = processed_posts(parse_posts(), published=True, reverse=True)
     atom_feed = AtomFeed(
         title='My Blog', title_type='text', author='Vasilij Schneidermann',
         subtitle='Technical Writings', url=flask.request.url,
         feed_url=flask.request.url_root)
-    for post in list(reversed(posts))[:10]:
+    for post in posts[:10]:
         title = post['title']
         content = post['content'].replace('­', '')
         url = urljoin(flask.request.url_root, '/posts/{}'.format(post['slug']))
