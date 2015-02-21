@@ -22,12 +22,18 @@ BLOG_TITLE = "My Blog"
 BLOG_SUBTITLE = "Technical Writings"
 
 
-# TODO tags, categories, both + template support
-# TODO fix imprint design
-# TODO improve privacy statement
-# TODO turn feed into feeds and implement tag-specific feeds
-# TODO add license hint (which CC variant?)
-# TODO katex? svg?
+# categories: emacs, scheme, common-lisp, ruby, python, other
+# categories: emacs, elpa, other
+
+
+# TODO make route that displays all categories and linkify them
+# TODO display tags and categories in navigation
+# TODO turn feed into feeds and implement category-specific feeds
+# TODO display tags and categories properly in post templates with links
+# TODO scrutinize parse_posts() usage, simply because every time it's
+# done, the disk gets searched which only needs to be done once per
+# top-level route, not in its subroutines
+# TODO use better fonts (keep Fira Mono though)
 
 app = flask.Flask(__name__)
 
