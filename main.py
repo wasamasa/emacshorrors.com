@@ -212,8 +212,6 @@ def all_tags():
 def show_tagged_posts(tags, page=None):
     """Display a list of tagged posts."""
     posts = tagged_posts(tags.split(','))
-    print(len(posts))
-    print(page)
     return show_index(page=page, posts=posts)
 
 
