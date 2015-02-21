@@ -21,35 +21,32 @@ BLOG_TITLE = "My Blog"
 BLOG_SUBTITLE = "Technical Writings"
 
 
-# TODO investigate in other deployment options compatible with
-# uberspace like FCGI (or [U]WSGI for other hosters)
 # TODO tags, categories, both + template support
 # TODO fix imprint design
 # TODO improve privacy statement
 # TODO turn feed into feeds and implement tag-specific feeds
-# TODO abstract these: about, imprint, privacy statement
-# TODO add license hint
-# TODO latex/mathjax? svg?
+# TODO add license hint (which CC variant?)
+# TODO katex? svg?
 
 app = flask.Flask(__name__)
 
 
-class HTML5Writer(html4css1.Writer):
-    """Writer class, will emit HTML5 soon."""
+class HTMLWriter(html4css1.Writer):
+    """Writer class."""
     def __init__(self):
         html4css1.Writer.__init__(self)
-        self.translator_class = HTML5Translator
+        self.translator_class = HTMLTranslator
 
 
-class HTML5Translator(html4css1.HTMLTranslator):
-    """Translator class, will translate HTML4 to HTML5 soon.
+class HTMLTranslator(html4css1.HTMLTranslator):
+    """Translator class.
     It only hyphenates text at the moment."""
     pyphen = Pyphen(lang='en')
 
     def visit_Text(self, node):
         text = node.astext()
-        text = ' '.join([self.pyphen.inserted(word, hyphen='­')
-                         for word in text.split(' ')])
+        text = ' '.join([
+            self.pyphen.inserted(word, hyphen='­') for word in text.split(' ')])
         encoded = self.encode(text)
         self.body.append(encoded)
 
@@ -111,7 +108,7 @@ def parse_post(path):
 
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
-        source_path=path, writer=HTML5Writer())['body']
+        source_path=path, writer=HTMLWriter())['body']
     return metadata, content
 
 
