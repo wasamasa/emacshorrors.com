@@ -227,6 +227,32 @@ def valid_tags(tags):
     return [tag for tag in tags if tag in all_tags()]
 
 
+@app.route('/categories')
+def show_categories():
+    """Display a list of all categories."""
+    categories = all_categories()
+    return flask.render_template('categories.tmpl', categories=categories)
+
+
+def all_categories():
+    """Return a list of all categories."""
+    posts = processed_posts(parse_posts(), published=True)
+    return list(set([post['category'] for post in posts]))
+
+
+@app.route('/categories/<category>')
+@app.route('/categories/<category>/<int:page>')
+def show_category_posts(category, page=None):
+    """Display a list of category posts."""
+    posts = category_posts(category)
+    return show_index(page=page, posts=posts)
+
+
+def category_posts(category):
+    """Return list of category posts."""
+    return processed_posts(parse_posts(), published=True, category=category)
+
+
 @app.route('/')
 @app.route('/posts')
 @app.route('/posts/<int:page>')
