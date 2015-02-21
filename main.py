@@ -271,16 +271,22 @@ def show_about():
     return flask.render_template('about.tmpl')
 
 
+@app.route('/colophon')
+def show_colophon():
+    """Display an colophon page."""
+    return flask.render_template('colophon.tmpl')
+
+
 @app.route('/imprint')
 def show_imprint():
     """Display an imprint page."""
     return flask.render_template('imprint.tmpl')
 
 
-@app.route('/privacy')
-def show_privacy():
-    """Display a privacy statement page."""
-    return flask.render_template('privacy.tmpl')
+@app.route('/legal')
+def show_legal():
+    """Display a legal statement page."""
+    return flask.render_template('legal.tmpl')
 
 
 @app.errorhandler(404)
