@@ -203,8 +203,8 @@ def show_tags():
 
 def all_tags():
     """Return a list of all tags."""
-    return list(chain.from_iterable(
-        [post['tags'] for post in parse_posts() if post['tags']]))
+    return list(set(chain.from_iterable(
+        [post['tags'] for post in parse_posts() if post['tags']])))
 
 
 @app.route('/tags/<tags>')
