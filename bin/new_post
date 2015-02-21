@@ -27,7 +27,7 @@ def main():
 
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     content = [':title: {}'.format(title), ':date: {}'.format(timestamp),
-               ':published: no', '', '']
+               ':published: no', ':category: test', ':tags:', '', '']
 
     with (Path(posts_path) / Path(slug).with_suffix('.rst')).open('w') as p:
         p.write('\n'.join(content))
