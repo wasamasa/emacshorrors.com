@@ -161,7 +161,7 @@ def fits_criterium(post, key, value):
     if key == 'published' and 'published' in post and 'date' in post:
         timedelta = (datetime.now() - datetime.strptime(
             post['date'], EXACT_FORMAT)).total_seconds() > 0
-        condition = post['published'] and timedelta
+        condition = post['published'] == 'yes' and timedelta
         if value:
             return condition
         else:
