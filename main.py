@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
+from itertools import chain
 from math import ceil
 from pathlib import Path
 from urllib.parse import urljoin
@@ -53,7 +54,7 @@ class HTMLTranslator(html4css1.HTMLTranslator):
 
 def ensure_metadata(metadata):
     """If the metadata is well-formed, return True."""
-    if 'title' in metadata and 'date' in metadata:
+    if 'title' in metadata and 'date' in metadata and 'category' in metadata:
         return True
     return False
 
@@ -113,7 +114,7 @@ def parse_post(path):
 
 
 def parse_posts():
-    """Parse all valid ReST posts."""
+    """Parse all ReST posts, return a list of valid ones."""
     post_filenames = [str(p) for p in Path('posts').glob('*.rst')]
     posts = []
     for post_filename in post_filenames:
@@ -123,8 +124,13 @@ def parse_posts():
             post = metadata
             post['content'] = content
             post['slug'] = slug
+
+            if 'category' not in post:
+                post['category'] = ''
             if 'tags' in post:
                 post['tags'] = post['tags'].split(', ')
+            else:
+                post['tags'] = []
             posts.append(post)
     return posts
 
@@ -140,7 +146,8 @@ def processed_posts(posts, **criteria):
 
 def fits_criteria(post, criteria):
     """Check whether a posts fits all criteria."""
-    return all([fits_criterium(post, key, value) for key, value in criteria.items()])
+    return all([fits_criterium(post, key, value)
+                for key, value in criteria.items()])
 
 
 def fits_criterium(post, key, value):
@@ -155,6 +162,8 @@ def fits_criterium(post, key, value):
             return not condition
     elif key == 'tags' and 'tags' in post:
         return any(tag in post['tags'] for tag in value)
+    elif key == 'category':
+        return post['category'] == value
     else:
         # ignore non-existant keys
         return True
@@ -179,13 +188,45 @@ def reverse_chunks(items, pagination):
     return chunks
 
 
+@app.route('/tags')
+def show_tags():
+    """Display a list of all tags."""
+    tags = all_tags()
+    return flask.render_template('tags.tmpl', tags=tags)
+
+
+def all_tags():
+    """Return a list of all tags."""
+    return list(chain.from_iterable(
+        [post['tags'] for post in parse_posts() if post['tags']]))
+
+
+@app.route('/tags/<tags>')
+@app.route('/tags/<tags>/<int:page>')
+def show_tagged_posts(tags, page=None):
+    posts = tagged_posts(tags.split(','))
+    print(len(posts))
+    print(page)
+    return show_index(page=page, posts=posts)
+
+
+def tagged_posts(tags):
+    tags = valid_tags(tags)
+    return processed_posts(parse_posts(), published=True, tags=tags)
+
+
+def valid_tags(tags):
+    return [tag for tag in tags if tag in all_tags()]
+
+
 @app.route('/')
 @app.route('/posts')
 @app.route('/posts/<int:page>')
-def show_index(page=None):
+def show_index(page=None, posts=None):
     """Display the appropriate paginated page.
     If the page is None, display the first page."""
-    posts = processed_posts(parse_posts(), published=True)
+    if not posts:
+        posts = processed_posts(parse_posts(), published=True)
     if posts:
         pagination = 5
         if not page:
@@ -216,8 +257,10 @@ def show_post(post_slug):
         if ensure_metadata(metadata):
             title = metadata['title']
             date = metadata['date']
+            # TODO this shouldn't need to be duplicated
+            tags = metadata['tags'].split(', ') if 'tags' in metadata else []
         return flask.render_template(
-            'post.tmpl', title=title, date=date, content=content)
+            'post.tmpl', title=title, date=date, tags=tags, content=content)
     else:
         return flask.render_template('error.tmpl', error="No such post")
 
@@ -257,8 +300,8 @@ def atom_feed():
         updated = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
         published = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
         atom_feed.add(
-            title=title, title_type='text', content=content, content_type='html',
-            url=url, updated=updated, published=published)
+            title=title, title_type='text', content=content,
+            content_type='html', url=url, updated=updated, published=published)
     if posts:
         return atom_feed.to_string()
     else:
