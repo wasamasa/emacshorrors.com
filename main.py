@@ -210,6 +210,7 @@ def all_tags():
 @app.route('/tags/<tags>')
 @app.route('/tags/<tags>/<int:page>')
 def show_tagged_posts(tags, page=None):
+    """Display a list of tagged posts."""
     posts = tagged_posts(tags.split(','))
     print(len(posts))
     print(page)
@@ -217,11 +218,13 @@ def show_tagged_posts(tags, page=None):
 
 
 def tagged_posts(tags):
+    """Return list of tagged posts."""
     tags = valid_tags(tags)
     return processed_posts(parse_posts(), published=True, tags=tags)
 
 
 def valid_tags(tags):
+    """Return list of valid tags."""
     return [tag for tag in tags if tag in all_tags()]
 
 
