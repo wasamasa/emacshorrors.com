@@ -26,10 +26,7 @@ BLOG_SUBTITLE = "Technical Writings"
 # categories: emacs, elpa, other
 
 
-# TODO make route that displays all categories and linkify them
-# TODO display tags and categories in navigation
 # TODO turn feed into feeds and implement category-specific feeds
-# TODO display tags and categories properly in post templates with links
 # TODO scrutinize parse_posts() usage, simply because every time it's
 # done, the disk gets searched which only needs to be done once per
 # top-level route, not in its subroutines
@@ -101,10 +98,10 @@ def approximate_datetime(timestamp):
 
 def parse_post(path):
     """Parse a ReST post, return metadata and content."""
-    metadata = {}
     doctree = docutils.core.publish_doctree(
         None, source_class=docutils.io.FileInput, source_path=path)
     docinfos = doctree.traverse(docutils.nodes.docinfo)
+    metadata = {}
     for docinfo in docinfos:
         for child in docinfo.children:
             if child.tagname == 'field':
@@ -112,6 +109,10 @@ def parse_post(path):
                 metadata[tag.astext()] = content.astext()
             else:
                 metadata[child.tagname] = child.astext()
+    if 'tags' in metadata and metadata['tags']:
+        metadata['tags'] = metadata['tags'].split(', ')
+    else:
+        metadata['tags'] = []
 
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
@@ -130,13 +131,6 @@ def parse_posts():
             post = metadata
             post['content'] = content
             post['slug'] = slug
-
-            if 'category' not in post:
-                post['category'] = ''
-            if 'tags' in post:
-                post['tags'] = post['tags'].split(', ')
-            else:
-                post['tags'] = []
             posts.append(post)
     return posts
 
@@ -291,10 +285,11 @@ def show_post(post_slug):
         if ensure_metadata(metadata):
             title = metadata['title']
             date = metadata['date']
-            # TODO this shouldn't need to be duplicated
-            tags = metadata['tags'].split(', ') if 'tags' in metadata else []
+            tags = metadata['tags']
+            category = metadata['category']
         return flask.render_template(
-            'post.tmpl', title=title, date=date, tags=tags, content=content)
+            'post.tmpl', title=title, date=date, tags=tags,
+            category=category, content=content)
     else:
         return flask.render_template('error.tmpl', error="No such post")
 
