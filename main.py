@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from datetime import datetime
-from itertools import chain
 from math import ceil
 from pathlib import Path
 from urllib.parse import urljoin
@@ -109,10 +108,6 @@ def parse_post(path):
                 metadata[tag.astext()] = content.astext()
             else:
                 metadata[child.tagname] = child.astext()
-    if 'tags' in metadata and metadata['tags']:
-        metadata['tags'] = metadata['tags'].split(', ')
-    else:
-        metadata['tags'] = []
 
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
@@ -160,10 +155,8 @@ def fits_criterium(post, key, value):
             return condition
         else:
             return not condition
-    elif key == 'tags' and 'tags' in post:
-        return any(tag in post['tags'] for tag in value)
     elif key == 'category':
-        return post['category'] == value
+        return post['category'] in value
     else:
         # ignore non-existant keys
         return True
@@ -188,39 +181,6 @@ def reverse_chunks(items, pagination):
     return chunks
 
 
-@app.route('/tags')
-def show_tags():
-    """Display a list of all tags."""
-    tags = all_tags()
-    return flask.render_template('tags.tmpl', tags=tags)
-
-
-def all_tags():
-    """Return a list of all tags."""
-    posts = processed_posts(parse_posts(), published=True)
-    return list(set(chain.from_iterable(
-        [post['tags'] for post in posts if post['tags']])))
-
-
-@app.route('/tags/<tags>')
-@app.route('/tags/<tags>/<int:page>')
-def show_tagged_posts(tags, page=None):
-    """Display a list of tagged posts."""
-    posts = tagged_posts(tags.split(','))
-    return show_index(page=page, posts=posts)
-
-
-def tagged_posts(tags):
-    """Return list of tagged posts."""
-    tags = valid_tags(tags)
-    return processed_posts(parse_posts(), published=True, tags=tags)
-
-
-def valid_tags(tags):
-    """Return list of valid tags."""
-    return [tag for tag in tags if tag in all_tags()]
-
-
 @app.route('/categories')
 def show_categories():
     """Display a list of all categories."""
@@ -238,13 +198,14 @@ def all_categories():
 @app.route('/categories/<category>/<int:page>')
 def show_category_posts(category, page=None):
     """Display a list of category posts."""
-    posts = category_posts(category)
+    categories = category.split(',')
+    posts = category_posts(categories)
     return show_index(page=page, posts=posts)
 
 
-def category_posts(category):
+def category_posts(categories):
     """Return list of category posts."""
-    return processed_posts(parse_posts(), published=True, category=category)
+    return processed_posts(parse_posts(), published=True, category=categories)
 
 
 @app.route('/')
@@ -285,11 +246,9 @@ def show_post(post_slug):
         if ensure_metadata(metadata):
             title = metadata['title']
             date = metadata['date']
-            tags = metadata['tags']
             category = metadata['category']
         return flask.render_template(
-            'post.tmpl', title=title, date=date, tags=tags,
-            category=category, content=content)
+            'post.tmpl', title=title, date=date, content=content)
     else:
         return flask.render_template('error.tmpl', error="No such post")
 
@@ -315,7 +274,7 @@ def show_archive():
 
 
 @app.route('/feed')
-def atom_feed():
+def show_atom_feed():
     """Display an atom feed of all published posts."""
     posts = processed_posts(parse_posts(), published=True, reverse=True)
     atom_feed = AtomFeed(
