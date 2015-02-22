@@ -25,10 +25,6 @@ BLOG_SUBTITLE = "Technical Writings"
 # categories: emacs, elpa, other
 
 
-# TODO turn feed into feeds and implement category-specific feeds
-# TODO scrutinize parse_posts() usage, simply because every time it's
-# done, the disk gets searched which only needs to be done once per
-# top-level route, not in its subroutines
 # TODO use better fonts (keep Fira Mono though)
 
 app = flask.Flask(__name__)
@@ -208,7 +204,11 @@ def show_category_posts(category, page=None):
 
 def category_posts(categories):
     """Return list of category posts."""
-    return processed_posts(parse_posts(), published=True, category=categories)
+    if categories:
+        return processed_posts(parse_posts(), published=True,
+                               reverse=True, category=categories)
+    else:
+        return processed_posts(parse_posts(), published=True, reverse=True)
 
 
 @app.route('/')
@@ -277,9 +277,22 @@ def show_archive():
 
 
 @app.route('/feed')
-def show_atom_feed():
+@app.route('/feed/<category>')
+def show_atom_feed(category=None):
     """Display an atom feed of all published posts."""
-    posts = processed_posts(parse_posts(), published=True, reverse=True)
+    if category:
+        categories = category.split(',')
+    else:
+        categories = []
+
+    posts = category_posts(categories)
+    if posts:
+        return atom_feed(posts)
+    else:
+        return flask.render_template('error.tmpl', error="No posts yet")
+
+
+def atom_feed(posts):
     atom_feed = AtomFeed(
         title=BLOG_TITLE, title_type='text', author=BLOG_AUTHOR,
         subtitle=BLOG_SUBTITLE, url=flask.request.url,
@@ -293,10 +306,7 @@ def show_atom_feed():
         atom_feed.add(
             title=title, title_type='text', content=content,
             content_type='html', url=url, updated=updated, published=published)
-    if posts:
-        return atom_feed.to_string()
-    else:
-        return flask.render_template('error.tmpl', error="No posts yet")
+    return atom_feed.to_string()
 
 
 @app.route('/about')
