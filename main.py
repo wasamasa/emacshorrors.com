@@ -249,7 +249,6 @@ def show_post(post_slug):
         if ensure_metadata(metadata):
             title = metadata['title']
             date = metadata['date']
-            category = metadata['category']
         return flask.render_template(
             'post.tmpl', title=title, date=date, content=content)
     else:
