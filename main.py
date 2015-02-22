@@ -49,7 +49,8 @@ class HTMLTranslator(html4css1.HTMLTranslator):
     def visit_Text(self, node):
         text = node.astext()
         text = ' '.join([
-            self.pyphen.inserted(word, hyphen='­') for word in text.split(' ')])
+            self.pyphen.inserted(word, hyphen='­')
+            for word in text.split(' ')])
         encoded = self.encode(text)
         self.body.append(encoded)
 
@@ -82,14 +83,16 @@ def approximate_datetime(timestamp):
         {'delta': 172800, 'format_string': "A day ago", 'factor': None},
         {'delta': 2592000, 'format_string': "{} days ago", 'factor': 86400},
         {'delta': 5184000, 'format_string': "A month ago", 'factor': None},
-        {'delta': 31104000, 'format_string': "{} months ago", 'factor': 2592000},
+        {'delta': 31104000, 'format_string': "{} months ago",
+         'factor': 2592000},
         {'delta': 62208000, 'format_string': "A year ago", 'factor': None}
     ]
 
     for time in times:
         if delta < time['delta']:
             if time['factor']:
-                return time['format_string'].format(int(delta / time['factor']))
+                return time['format_string'].format(
+                    int(delta / time['factor']))
             else:
                 return time['format_string']
     return "{} years ago".format(int(delta / 31104000))
@@ -260,7 +263,8 @@ def show_unpublished():
     if posts:
         return flask.render_template('unpublished.tmpl', posts=posts)
     else:
-        return flask.render_template('error.tmpl', error="No unpublished posts")
+        return flask.render_template(
+            'error.tmpl', error="No unpublished posts")
 
 
 @app.route('/archive')
