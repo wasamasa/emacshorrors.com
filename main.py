@@ -288,7 +288,7 @@ def show_atom_feed():
     for post in posts[:10]:
         title = post['title']
         content = post['content'].replace('­', '')
-        url = urljoin(flask.request.url_root, '/posts/{}'.format(post['slug']))
+        url = urljoin(flask.request.url_root, '/post/{}'.format(post['slug']))
         updated = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
         published = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
         atom_feed.add(
