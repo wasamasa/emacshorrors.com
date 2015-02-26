@@ -103,9 +103,13 @@ def parse_post(path):
             else:
                 metadata[child.tagname] = child.astext()
 
+    settings_overrides = {
+        'trim_footnote_reference_space': True
+    }
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
-        source_path=path, writer=HTMLWriter())['body']
+        source_path=path, writer=HTMLWriter(),
+        settings_overrides=settings_overrides)['body']
     return metadata, content
 
 
