@@ -1,0 +1,19 @@
+{% extends "skeleton.tmpl" %}
+{% block title %}Unpublished{% endblock %}
+{% block main %}
+  <h2>Unpublished</h2>
+  <div class="content">
+    <table class="layout">
+      {% for post in posts %}
+        <tr>
+          <td class="layout">
+            <span class="date">{{ post.date | displayed_datetime }}</span>
+          </td>
+          <td class="layout">
+            <a href="/post/{{ post.slug }}">{{ post.title }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

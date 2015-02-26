@@ -1,0 +1,10 @@
+{% extends "skeleton.tmpl" %}
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+  <h2>{{ title }}</h2>
+  <span class="date">{{ date | approximate_datetime }}</span>
+  <div class="content">
+    {{ content }}
+  </div>
+  <hr />
+{% endblock %}

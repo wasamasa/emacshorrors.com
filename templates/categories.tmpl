@@ -1,0 +1,13 @@
+{% extends "skeleton.tmpl" %}
+{% set active_page = "categories" %}
+{% block title %}Categories{% endblock %}
+{% block main %}
+  <h2>Categories</h2>
+  <div class="content">
+    <ul>
+      {% for category in categories %}
+        <li><a href="/categories/{{ category }}">{{ category }}</a> (<a href="/feed/{{ category }}">Feed</a>)</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

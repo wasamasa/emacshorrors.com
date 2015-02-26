@@ -1,0 +1,52 @@
+/* example stylesheet for Docutils */
+
+/* :Author:    Günter Milde */
+/* :Copyright: © 2012 G. Milde */
+/* :License:   This stylesheet is placed in the public domain. */
+
+/* Syntax highlight rules for HTML documents generated with Docutils */
+/* using the ``--syntax-highlight=long`` option (new in v. 0.9). */
+
+/* This stylesheet implements Pygment's "default" style with less rules than */
+/* pygments-default using class hierarchies.                                 */
+/* Use it as example for "handcrafted" styles with only few rules.      */
+
+.code                              { background: #272822 }
+.code .comment                     { color: #75715e; font-style: italic }
+.code .error                       { color: #960050; background-color: #1e0010 }
+.code .generic.deleted             { color: #f92672 }
+.code .generic.emph                { font-style: italic }
+.code .generic.error               { color: #960050; background-color: #1e0010 }
+.code .generic.heading             { color: #75715e }
+.code .generic.inserted            { color: #a6e22e }
+.code .generic.output              { color: #75715e }
+.code .generic.prompt              { color: #75715e }
+.code .generic.strong              { font-weight: bold }
+.code .generic.subheading          { color: #75715e }
+.code .generic.traceback           { color: #66d9ef }
+.code .keyword                     { color: #66d9ef; font-weight: bold }
+.code .keyword.pseudo              { font-weight: normal }
+.code .literal                     { color: #ae81ff }
+.code .literal.number              { color: #ae81ff }
+.code .literal.string              { color: #e6db74 }
+.code .literal.string.doc          { color: #e6db74 }
+.code .literal.string.escape       { color: #e6db74 }
+.code .literal.string.interpol     { color: #fd971f }
+.code .literal.string.other        { color: #e6db74 }
+.code .literal.string.regex        { color: #e6db74 }
+.code .literal.string.symbol       { color: #fd971f }
+.code .name                        { color: #f8f8f2 }
+.code .name.attribute              { color: #a6e22e }
+.code .name.builtin                { color: #f8f8f2 }
+.code .name.class                  { color: #a6e22e }
+.code .name.constant               { color: #66d9ef }
+.code .name.decorator              { color: #a6e22e }
+.code .name.entity                 { color: #f8f8f2 }
+.code .name.exception              { color: #a6e22e }
+.code .name.function               { color: #a6e22e }
+.code .name.label                  { color: #f8f8f2 }
+.code .name.namespace              { color: #f8f8f2 }
+.code .name.tag                    { color: #f92672 }
+.code .name.variable               { color: #f8f8f2 }
+.code .operator                    { color: #f92672 }
+.code .punctuation                 { color: #f8f8f2 }

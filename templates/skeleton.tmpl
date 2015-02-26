@@ -1,0 +1,28 @@
+{% set footer = [
+  ('/', "index", "Index"),
+  ('/archive', "archive", "Archive"),
+  ('/feed', "feed", "Feed"),
+  ('/categories', "categories", "Categories"),
+  ('/about', "about", "About"),
+  ('/colophon', "colophon", "Colophon"),
+  ('/imprint', "imprint", "Imprint"),
+  ('/legal', "legal", "Legal"),
+]
+%}<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/pygments-long.css" rel="stylesheet" type="text/css" />
+    <title> Emacs Horrors - {% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">{% block main %}{% endblock %}</div>
+    </div>
+    <div class="footer">
+      <ul>{% for href, page, name in footer %}
+        <li>{% if page == active_page %}{{ name }}{% else %}<a href="{{ href }}">{{ name }}</a>{% endif %}</li>{% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
