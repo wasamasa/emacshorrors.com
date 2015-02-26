@@ -17,17 +17,12 @@ from werkzeug.contrib.atom import AtomFeed
 DISPLAY_FORMAT = '%Y-%m-%d'
 EXACT_FORMAT = '%Y-%m-%d %H:%M:%S'
 BLOG_AUTHOR = "Vasilij Schneidermann"
-BLOG_TITLE = "My Blog"
-BLOG_SUBTITLE = "Technical Writings"
+BLOG_TITLE = "Emacs Horrors"
+BLOG_SUBTITLE = "Rants"
 
-
-# categories: emacs, scheme, common-lisp, ruby, python, other
-# categories: emacs, elpa, other
-
-
-# TODO use better fonts (keep Fira Mono though)
 
 app = flask.Flask(__name__)
+app.config['SERVER_NAME'] = 'emacshorrors.com'
 
 
 class HTMLWriter(html4css1.Writer):
@@ -116,7 +111,9 @@ def parse_post(path):
 
 def parse_posts():
     """Parse all ReST posts, return a list of valid ones."""
-    post_filenames = [str(p) for p in Path('posts').glob('*.rst')]
+    post_filenames = [str(p) for p in
+                      (Path(__file__).resolve().parent /
+                       Path('posts')).glob('*.rst')]
     posts = []
     for post_filename in post_filenames:
         slug = Path(post_filename).stem
@@ -243,7 +240,8 @@ def show_index(page=None, posts=None):
 @app.route('/post/<post_slug>')
 def show_post(post_slug):
     """Display a single post."""
-    slug_path = Path('posts') / Path('{}.rst'.format(post_slug))
+    slug_path = (Path(__file__).resolve().parent / Path('posts') /
+                 Path('{}.rst'.format(post_slug)))
     if slug_path.exists():
         metadata, content = parse_post(str(slug_path))
         if ensure_metadata(metadata):
@@ -306,7 +304,8 @@ def atom_feed(posts):
         atom_feed.add(
             title=title, title_type='text', content=content,
             content_type='html', url=url, updated=updated, published=published)
-    return atom_feed.to_string()
+    return flask.Response(atom_feed.to_string(),
+                          mimetype='application/atom+xml')
 
 
 @app.route('/about')
