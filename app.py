@@ -66,6 +66,7 @@ def approximate_datetime(timestamp):
     delta = (now - past).total_seconds()
 
     times = [
+        {'delta': 0, 'format_string': "In the future", 'factor': None},
         {'delta': 60, 'format_string': "Just now", 'factor': None},
         {'delta': 120, 'format_string': "A minute ago", 'factor': None},
         {'delta': 3600, 'format_string': "{} minutes ago", 'factor': 60},
