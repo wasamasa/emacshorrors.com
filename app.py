@@ -191,7 +191,7 @@ def show_categories():
 def all_categories():
     """Return a list of all categories."""
     posts = processed_posts(parse_posts(), published=True)
-    return list(set([post['category'] for post in posts]))
+    return sorted(list(set([post['category'] for post in posts])))
 
 
 @app.route('/categories/<category>')
