@@ -10,7 +10,6 @@ import docutils.io
 import docutils.nodes
 from docutils.writers import html4css1
 import flask
-from pyphen import Pyphen
 from werkzeug.contrib.atom import AtomFeed
 
 
@@ -22,28 +21,8 @@ BLOG_SUBTITLE = "Rants"
 
 
 app = flask.Flask(__name__)
+writer = html4css1.Writer()
 app.config['SERVER_NAME'] = 'emacshorrors.com'
-
-
-class HTMLWriter(html4css1.Writer):
-    """Writer class."""
-    def __init__(self):
-        html4css1.Writer.__init__(self)
-        self.translator_class = HTMLTranslator
-
-
-class HTMLTranslator(html4css1.HTMLTranslator):
-    """Translator class.
-    It only hyphenates text at the moment."""
-    pyphen = Pyphen(lang='en')
-
-    def visit_Text(self, node):
-        text = node.astext()
-        text = ' '.join([
-            self.pyphen.inserted(word, hyphen='­')
-            for word in text.split(' ')])
-        encoded = self.encode(text)
-        self.body.append(encoded)
 
 
 def ensure_metadata(metadata):
@@ -109,7 +88,7 @@ def parse_post(path):
     }
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
-        source_path=path, writer=HTMLWriter(),
+        source_path=path, writer=writer,
         settings_overrides=settings_overrides)['body']
     return metadata, content
 
@@ -302,7 +281,7 @@ def atom_feed(posts):
         feed_url=flask.request.url_root)
     for post in posts[:10]:
         title = post['title']
-        content = post['content'].replace('­', '')
+        content = post['content']
         url = urljoin(flask.request.url_root, '/post/{}'.format(post['slug']))
         updated = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
         published = datetime.strptime(post['date'], '%Y-%m-%d %H:%M:%S')
