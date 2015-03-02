@@ -88,7 +88,6 @@ body {
 }
 
 .main {
-  overflow: auto;
   padding-top: 2em;
   padding-bottom: 1.2em;
 }
@@ -142,6 +141,9 @@ tt {
 
 p {
   hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
   text-align: justify;
 }
 
@@ -173,11 +175,9 @@ p, table {
 
 pre {
   font-family: 'DejaVu Sans Mono', monospace;
-  overflow: auto;
+  overflow: visible;
   margin: 0.5em 0;
-  padding: 0.1em 0.4em;
   width: 41em;
-  border: 1px #75715e solid;
 }
 
 table {
@@ -235,6 +235,5 @@ a:link {
 }
 
 a:visited {
-  /* color: #960050; */
   color: #f92672;
 }
