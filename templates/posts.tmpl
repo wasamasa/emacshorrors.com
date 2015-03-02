@@ -17,11 +17,14 @@
       </div>
       <hr />
     {% endfor %}
-    {%  if old is sameas true %}
+    {% if old %}
       <span class="left"><a href="/posts/{{ page + 1 }}">Older</a></span>
     {% endif %}
-    {%  if new is sameas true %}
+    {% if new %}
       <span class="right"><a href="/posts/{{ page - 1 }}">Newer</a></span>
+    {% endif %}
+    {% if old or new %}
+      <hr class="clear" />
     {% endif %}
   </div>
 {% endblock %}

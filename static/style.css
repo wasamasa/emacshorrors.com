@@ -59,8 +59,20 @@ body {
   background-color: #272822;
 }
 
+.left, .right {
+  padding-bottom: 1em;
+}
+
+.left:before {
+  content: '\2190\a0';
+}
+
 .left {
   float: left;
+}
+
+.right:after {
+  content: '\a0\2192';
 }
 
 .right {
@@ -68,7 +80,7 @@ body {
 }
 
 .clear {
-  float: clear;
+  clear: both;
 }
 
 .wrapper {
@@ -79,6 +91,10 @@ body {
   overflow: auto;
   padding-top: 2em;
   padding-bottom: 1.2em;
+}
+
+.posts {
+  width: 42em;
 }
 
 .footer {
@@ -206,7 +222,6 @@ table.layout td .key {
 
 hr {
   margin: 1em 0;
-  width: 42em;
   border: 1px #49483e solid;
 }
 
