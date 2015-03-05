@@ -86,7 +86,8 @@ def parse_post(path):
                 metadata[child.tagname] = child.astext()
 
     settings_overrides = {
-        'trim_footnote_reference_space': True
+        'trim_footnote_reference_space': True,
+        'smart_quotes': True
     }
     content = docutils.core.publish_parts(
         None, source_class=docutils.io.FileInput,
