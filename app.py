@@ -45,29 +45,28 @@ def approximate_datetime(timestamp):
     delta = (now - past).total_seconds()
 
     times = [
-        {'delta': 0, 'format_string': "In the future", 'factor': None},
-        {'delta': 60, 'format_string': "Just now", 'factor': None},
-        {'delta': 120, 'format_string': "A minute ago", 'factor': None},
-        {'delta': 3600, 'format_string': "{} minutes ago", 'factor': 60},
-        {'delta': 7200, 'format_string': "An hour ago", 'factor': None},
-        {'delta': 86400, 'format_string': "{} hours ago", 'factor': 3600},
-        {'delta': 172800, 'format_string': "A day ago", 'factor': None},
-        {'delta': 604800, 'format_string': "{} days ago", 'factor': 86400},
-        {'delta': 1209600, 'format_string': "A week ago", 'factor': None},
-        {'delta': 2592000, 'format_string': "{} weeks ago", 'factor': 604800},
-        {'delta': 5184000, 'format_string': "A month ago", 'factor': None},
-        {'delta': 31104000, 'format_string': "{} months ago",
-         'factor': 2592000},
-        {'delta': 62208000, 'format_string': "A year ago", 'factor': None}
+        {'delta': 0, 'format': "In the future", 'factor': None},
+        {'delta': 60, 'format': "Just now", 'factor': None},
+        {'delta': 120, 'format': "A minute ago", 'factor': None},
+        {'delta': 3600, 'format': "{} minutes ago", 'factor': 60},
+        {'delta': 7200, 'format': "An hour ago", 'factor': None},
+        {'delta': 86400, 'format': "{} hours ago", 'factor': 3600},
+        {'delta': 172800, 'format': "A day ago", 'factor': None},
+        {'delta': 604800, 'format': "{} days ago", 'factor': 86400},
+        {'delta': 1209600, 'format': "A week ago", 'factor': None},
+        {'delta': 2592000, 'format': "{} weeks ago", 'factor': 604800},
+        {'delta': 5184000, 'format': "A month ago", 'factor': None},
+        {'delta': 31104000, 'format': "{} months ago", 'factor': 2592000},
+        {'delta': 62208000, 'format': "A year ago", 'factor': None}
     ]
 
     for time in times:
+        format_string = time['format']
         if delta < time['delta']:
-            if time['factor']:
-                return time['format_string'].format(
-                    int(delta / time['factor']))
+            if format_string:
+                return format_string.format(int(delta / format_string))
             else:
-                return time['format_string']
+                return format_string
     return "{} years ago".format(int(delta / 31104000))
 
 
