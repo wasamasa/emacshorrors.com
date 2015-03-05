@@ -62,9 +62,10 @@ def approximate_datetime(timestamp):
 
     for time in times:
         format_string = time['format']
+        factor = time['factor']
         if delta < time['delta']:
-            if format_string:
-                return format_string.format(int(delta / format_string))
+            if factor:
+                return format_string.format(int(delta / factor))
             else:
                 return format_string
     return "{} years ago".format(int(delta / 31104000))
