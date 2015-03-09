@@ -318,6 +318,10 @@ def show_legal():
     """Display a legal statement page."""
     return flask.render_template('legal.tmpl')
 
+@app.route('/favicon.ico')
+def show_favicon():
+    return app.send_static_file('favicon.ico')
+
 
 @app.errorhandler(404)
 def page_not_found(error):
