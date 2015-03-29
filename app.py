@@ -117,9 +117,9 @@ def processed_posts(posts, **criteria):
     """Sort and filter posts by the given criteria."""
     filtered_posts = [post for post in posts if fits_criteria(post, criteria)]
     sorted_posts = sorted(filtered_posts, key=lambda post: post['date'])
-    if 'reverse' in criteria:
-        return list(reversed(sorted_posts))
-    return sorted_posts
+    if 'unreversed' in criteria:
+        return sorted_posts
+    return list(reversed(sorted_posts))
 
 
 def fits_criteria(post, criteria):
@@ -190,9 +190,9 @@ def category_posts(categories):
     """Return list of category posts."""
     if categories:
         return processed_posts(parse_posts(), published=True,
-                               reverse=True, category=categories)
+                               category=categories)
     else:
-        return processed_posts(parse_posts(), published=True, reverse=True)
+        return processed_posts(parse_posts(), published=True)
 
 
 @app.route('/')
@@ -202,7 +202,7 @@ def show_index(page=None, posts=None):
     """Display the appropriate paginated page.
     If the page is None, display the first page."""
     if not posts:
-        posts = processed_posts(parse_posts(), published=True)
+        posts = processed_posts(parse_posts(), published=True, unreversed=True)
     if posts:
         pagination = 5
         if not page:
@@ -243,7 +243,7 @@ def show_post(post_slug):
 @app.route('/unpublished')
 def show_unpublished():
     """Display unpaginated view of unpublished posts."""
-    posts = processed_posts(parse_posts(), published=False, reverse=True)
+    posts = processed_posts(parse_posts(), published=False)
     if posts:
         return flask.render_template('unpublished.tmpl', posts=posts)
     else:
@@ -254,7 +254,7 @@ def show_unpublished():
 @app.route('/archive')
 def show_archive():
     """Display an archive of all posts."""
-    posts = processed_posts(parse_posts(), published=True, reverse=True)
+    posts = processed_posts(parse_posts(), published=True)
     if posts:
         return flask.render_template('archive.tmpl', posts=posts)
     else:
