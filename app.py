@@ -22,7 +22,6 @@ BLOG_SUBTITLE = "Rants"
 
 app = flask.Flask(__name__)
 writer = html4css1.Writer()
-app.config['SERVER_NAME'] = 'emacshorrors.com'
 
 
 def ensure_metadata(metadata):
