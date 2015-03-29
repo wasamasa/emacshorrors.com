@@ -182,27 +182,22 @@ def all_categories():
 def show_category_posts(category, page=None):
     """Display a list of category posts."""
     categories = category.split(',')
-    posts = category_posts(categories)
-    return show_index(page=page, posts=posts)
-
-
-def category_posts(categories):
-    """Return list of category posts."""
-    if categories:
-        return processed_posts(parse_posts(), published=True,
-                               category=categories)
-    else:
-        return processed_posts(parse_posts(), published=True)
+    return show_index(page=page, categories=categories)
 
 
 @app.route('/')
 @app.route('/posts')
 @app.route('/posts/<int:page>')
-def show_index(page=None, posts=None):
+def show_index(page=None, posts=None, categories=None):
     """Display the appropriate paginated page.
     If the page is None, display the first page."""
     if not posts:
-        posts = processed_posts(parse_posts(), published=True, unreversed=True)
+        if categories:
+            posts = processed_posts(parse_posts(), published=True,
+                                    category=categories, unreversed=True)
+        else:
+            posts = processed_posts(parse_posts(), published=True,
+                                    unreversed=True)
     if posts:
         pagination = 5
         if not page:
