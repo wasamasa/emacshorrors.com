@@ -264,7 +264,12 @@ def show_atom_feed(category=None):
     else:
         categories = []
 
-    posts = category_posts(categories)
+    if categories:
+        posts = processed_posts(parse_posts(), published=True,
+                                category=categories)
+    else:
+        posts = processed_posts(parse_posts(), published=True)
+
     if posts:
         return atom_feed(posts)
     else:
