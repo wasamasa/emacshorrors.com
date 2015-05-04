@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (C) 2014-2015 Vasilij Schneidermann <v.schneidermann@gmail.com>
 
 from datetime import datetime
 from math import ceil
