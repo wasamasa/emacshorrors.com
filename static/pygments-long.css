@@ -11,7 +11,7 @@
 /* pygments-default using class hierarchies.                                 */
 /* Use it as example for "handcrafted" styles with only few rules.      */
 
-.code                              { background: #272822 }
+.code                              { background: #1b1d1e }
 .code .comment                     { color: #75715e; font-style: italic }
 .code .error                       { color: #960050; background-color: #1e0010 }
 .code .generic.deleted             { color: #f92672 }
