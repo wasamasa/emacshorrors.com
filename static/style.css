@@ -3,48 +3,6 @@
   padding: 0;
 }
 
-@font-face {
-  font-family: 'DejaVu Sans';
-  src: url('dejavu-sans-regular.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DejaVu Sans';
-  src: url('dejavu-sans-bold.ttf');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DejaVu Sans';
-  src: url('dejavu-sans-italic.ttf');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'DejaVu Sans Mono';
-  src: url('dejavu-mono-regular.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DejaVu Sans Mono';
-  src: url('dejavu-mono-bold.ttf');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'DejaVu Sans Mono';
-  src: url('dejavu-mono-italic.ttf');
-  font-weight: normal;
-  font-style: italic;
-}
-
 html {
   height: 100%;
 }
@@ -53,7 +11,7 @@ body {
   height: 100%;
   width: 43em;
   margin: 0 auto;
-  font-family: 'DejaVu Sans', sans;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1.2em;
   color: #f8f8f2;
   background-color: #1b1d1e;
@@ -129,7 +87,7 @@ h2 {
 }
 
 tt {
-  font-family: 'DejaVu Sans Mono', monospace;
+  font-family: 'Courier New', Courier, monospace;
   color: #f92672;
   border: 1px #75715e solid;
 }
@@ -148,7 +106,7 @@ p {
 }
 
 .date, .category {
-  font-family: 'DejaVu Sans Mono', monospace;
+  font-family: 'Courier New', Courier, monospace;
   padding-bottom: 0.5em;
   padding-right: 0.5em;
   color: #75715e;
@@ -174,7 +132,7 @@ p, table {
 }
 
 pre {
-  font-family: 'DejaVu Sans Mono', monospace;
+  font-family: 'Courier New', Courier, monospace;
   overflow: visible;
   margin: 0.5em 0;
   width: 41em;
