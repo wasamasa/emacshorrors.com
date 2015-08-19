@@ -13,7 +13,7 @@ Hyde_ is different.  It doesn't try to be particularly smart about
 templating language`_ on you.  Adding support for translating my
 existing posts was as simple as writing a few lines of Scheme_.
 That's why I went the full route and rebuilt my blog in nearly all of
-its entirety with it.  Full sources will follow soon.
+its entirety with it.  Full sources are `available on Github`_.
 
 Given the low amount of hits for category-specific views, feeds and
 pagination links, I've decided to kill off these features.
@@ -37,6 +37,7 @@ slugification_ algorithm did make a difference in URL...
 .. _cache invalidation techniques: http://martinfowler.com/bliki/TwoHardThings.html
 .. _yet another irregular templating language: http://www.more-magic.net/posts/structurally-fixing-injection-bugs.html
 .. _Scheme: http://call-cc.org/
+.. _available on Github: https://github.com/wasamasa/emacshorrors.com
 .. _Atom feed: http://emacshorrors.com/feed.atom
 .. _Nginx: http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
 .. _slugification: https://kerihena.re/notebook/2009/jul/23/fancy-urls-and-slugs
