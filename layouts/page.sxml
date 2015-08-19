@@ -1,0 +1,5 @@
+()
+(if ($ 'no-heading) '() `(h1 ,($ 'title)))
+`(div
+  (@ (class "page"))
+  (inject ,contents))

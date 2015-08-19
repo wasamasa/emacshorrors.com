@@ -1,0 +1,13 @@
+((title . "Index")
+ (no-heading . #t))
+`(div
+  (@ (class "posts"))
+  ,@(map
+     (lambda (post)
+       `((h1 (a (@ (href ,(post-url post))) ,($ 'title post)))
+         (span (@ (class "date")) ,(pretty-date ($ 'date post)))
+         (div
+          (@ (class "post"))
+          (inject ,(read-page post)))
+         (hr)))
+     (latest-posts)))

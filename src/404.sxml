@@ -1,0 +1,27 @@
+((layouts))
+'((doctype-html)
+  (html
+   (@ (lang "en"))
+   (head
+    (meta (@ (charset "UTF-8")))
+    (link (@ (href "/static/404.css") (rel "stylesheet") (type "text/css")))
+    (title "404"))
+   (body
+    (div
+     (@ (class "error"))
+     (pre
+      "Warning (initialization): An error occurred while loading this website:
+
+404: File not found
+
+To ensure normal operation, you should investigate and check
+"
+      (a (@ (href "http://emacshorrors.com/")) "http://emacshorrors.com/")
+      " for the correct link to this website.")
+     (span (@ (id "blink")) "*")
+     (div
+      (@ (class "modeline"))
+      (span (@ (id "flags")) "U:%*-")
+      (span (@ (id "buffer")) "*Warnings*")
+      (span (@ (id "location")) "All L7")
+      (span (@ (id "modes")) "(Special)"))))))

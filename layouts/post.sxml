@@ -1,0 +1,7 @@
+()
+`(h1 ,($ 'title))
+`(span (@ (class "date")) ,(pretty-date ($ 'date)))
+`(div
+  (@ (class "post"))
+  (inject ,contents))
+'(hr)

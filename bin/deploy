@@ -1,0 +1,3 @@
+#!/bin/bash
+# note the first trailing slash
+rsync -avz -e ssh --delete ~/code/emacshorrors.com/out/ lab:/srv/http/emacshorrors.com

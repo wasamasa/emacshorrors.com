@@ -1,0 +1,29 @@
+()
+`((doctype-html) ; html5
+  (html
+   (@ (lang "en"))
+   (head
+    (meta (@ (charset "UTF-8")))
+    (link (@ (href "/static/style.css") (rel "stylesheet") (type "text/css")))
+    (link (@ (href "/static/code.css") (rel "stylesheet") (type "text/css")))
+    (link (@ (href "/atom.xml") (rel "alternate") (type "application/atom+xml") (title "Atom 1.0")))
+    (title ,(string-append "Emacs Horrors - " ($ 'title))))
+   (body
+    (div
+     (@ (class "wrapper"))
+     (div
+      (@ (class "main"))
+      (inject ,contents)))
+    (div
+     (@ (class "footer"))
+     (ul ,@(map (lambda (link)
+                  `(li ,(if (string=? (car link) ($ 'title))
+                            (car link)
+                            `(a (@ (href ,(cdr link))) ,(car link)))))
+                '(("Index" . "/index.html")
+                  ("Archive" . "/archive.html")
+                  ("Feed" . "/feed.atom")
+                  ("About" . "/about.html")
+                  ("Colophon" . "/colophon.html")
+                  ("Imprint" . "/imprint.html")
+                  ("Legal" . "/legal.html"))))))))

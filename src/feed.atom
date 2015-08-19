@@ -1,0 +1,12 @@
+((title . "Emacs Horrors")
+ (subtitle . "Rants")
+ (authors "Vasilij Schneidermann")
+ (date . "") ; HACK: unused
+ (base-uri . "http://emacshorrors.com")
+ (tag . "http://emacshorrors.com/"))
+(pages->atom-doc (latest-posts)
+                 page-date->rfc3339-string:
+                 (lambda (timestamp)
+                   (rfc3339->string
+                    (time->rfc3339
+                     (string->time timestamp "%Y-%m-%d %H:%M:%S")))))

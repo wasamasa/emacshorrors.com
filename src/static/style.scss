@@ -1,0 +1,121 @@
+()
+(let ((base1 "#1b1d1e")
+      (base3 "#75715e")
+      (base4 "#f8f8f2")
+      (pink "#f92672")
+      (cyan "#66d9ef")
+
+      (sans "Arial, Helvetica, sans-serif")
+      (mono "'Courier New', Courier, monospace"))
+  `((*
+     (margin 0)
+     (padding 0))
+    (html
+     (height "100%"))
+    (body
+     (height "100%")
+     (width "43em")
+     (margin 0 "auto")
+     (font-family ,sans)
+     (font-size "1.2em")
+     (color ,base4)
+     (background-color ,base1))
+
+    (.wrapper
+     (min-height "100%"))
+    (.main
+     (padding-top "2em")
+     (padding-bottom "1.2em"))
+    ((.posts .post)
+     (width "42em"))
+    (.post
+     (padding "0.5em" 0))
+    (.page
+     (width "42em"))
+
+    (.footer
+     (position "relative")
+     (margin-top "-1.5em")
+     (height "1.2em")
+     (clear "both")
+     ((// ul)
+      (list-style "none")
+      (padding 0))
+     ((// li)
+      (display "inline")
+      (padding 0 "0.5em")
+      ((& :first-child)
+       (padding 0))))
+
+    (h1
+     (font-weight "bold")
+     (font-size "1.5em")
+     (margin "0.5em" 0))
+    (tt
+     (font-family ,mono)
+     (color ,pink)
+     (border "1px" ,base3 "solid"))
+    (p
+     (hyphens "auto")
+     (-ms-hyphens "auto")
+     (-moz-hyphens "auto")
+     (-webkit-hyphens "auto")
+     (text-align "justify"))
+    (blockquote
+     (padding 0 0 0 "1em")
+     (border-left "8px" ,base3 "solid"))
+    (((ol ul))
+     (padding "0.5em" 0 "0.5em" "1.5em")
+     (list-style-position "outside"))
+    (((p table))
+     (margin "1em" 0))
+    (pre
+     (font-family ,mono)
+     (overflow "visible")
+     (margin "0.5em" 0)
+     (width "41em"))
+    (hr
+     (margin "1em" 0)
+     (border "1px" ,base3 "solid"))
+    (a:link
+     (color ,cyan))
+    (a:visited
+     (color ,pink))
+
+    (table
+     (border "1px" ,base4 "solid")
+     (border-collapse "collapse")
+     (((// td) (// th))
+      (padding 0 "0.1em"))
+     ((& .footnote)
+      (border "0px")
+      (display "block")
+      (margin "0.5em" 0)
+      ((// td)
+       (padding 0)
+       (padding-right "0.5em"))
+      ((& |:nth-of-type(1)|)
+       (border-top "1px" ,base4 "solid")
+       (padding-top "1em")))
+     ((& .layout)
+      (margin "1em" 0)
+      (border-style "none")
+      ((// td)
+       (vertical-align "top")
+       (padding 0 "0.5em" 0 0)
+       ((// .key)
+        (color ,base3)
+        (font-weight "bold")))))
+
+    (((.date .category))
+     (font-family ,mono)
+     (padding-bottom "0.5em")
+     (padding-right "0.5em")
+     (color ,base3)
+     (display "block"))
+
+    (|#reverse|
+     (unicode-bidi "bidi-override")
+     (direction "rtl"))
+    (.strike
+     (text-decoration "line-through"))))

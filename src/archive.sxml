@@ -1,0 +1,11 @@
+((title . "Archive"))
+`(table
+  (@ (class "layout"))
+  ,(map
+     (lambda (post)
+       `(tr
+         (td (@ (class "layout"))
+              (span (@ (class "date")) ,(archive-date ($ 'date post))))
+         (td (@ (class "layout"))
+             (a (@ (href ,(post-url post))) ,($ 'title post)))))
+     (all-posts)))
