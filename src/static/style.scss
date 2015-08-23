@@ -4,6 +4,7 @@
       (base3 "#75715e")
       (base4 "#f8f8f2")
       (pink "#f92672")
+      (lime "#a6e22e")
       (cyan "#66d9ef")
 
       (sans "Arial, Helvetica, sans-serif")
@@ -54,7 +55,7 @@
      (margin "0.5em" 0))
     (tt
      (font-family ,mono)
-     (color ,pink)
+     (color ,lime)
      (border "1px" ,base3 "solid"))
     (p
      (hyphens "auto")
