@@ -7,7 +7,8 @@
 
 (let* ((title (list-ref (argv) 1))
        (date (time->string (seconds->local-time) "%Y-%m-%d %H:%M:%S"))
-       (path (make-pathname (source-dir) (pathify title) ".rst")))
+       (path (make-pathname (format "~a/posts/" (source-dir))
+                            (pathify title) ".rst")))
   (if (file-exists? path)
       (begin
         (display "File already exists\n" (current-error-port))
