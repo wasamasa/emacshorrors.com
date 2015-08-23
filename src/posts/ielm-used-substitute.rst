@@ -8,7 +8,7 @@ is speaking to?  After all, it doesn't behave like, say, ``bash`` and
 convincing an Emacs process to behave this way in a proper manner is
 sort of difficult [1]_.
 
-Such petty things do of course not detract Real Emacs Lisp Hackers™.
+Such petty things do of course not deter Real Emacs Lisp Hackers™.
 Instead of fixing ``comint`` to be more flexible about its mode of
 operation, well, `just see for yourself`_:
 
