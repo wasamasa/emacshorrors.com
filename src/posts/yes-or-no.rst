@@ -32,7 +32,7 @@ what was going on:
 
 Everything just went according to plan.
 
-.. image:: /static/keikaku.jpg
+.. image:: /img/keikaku.jpg
 
 Fortunately this quirk can be disabled:
 
