@@ -17,5 +17,5 @@ dissecting existentialist worries.  And don't worry, these post are
 for entertainment and educational purposes.  I just like to rant every
 now and often, that's all.
 
-.. _a comment by eevee: http://emacshorrors.com/posts/going-static.html
+.. _a comment by eevee: http://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/
 .. _#emacs IRC channel: http://www.emacswiki.org/emacs/EmacsChannel
