@@ -56,8 +56,7 @@
      (margin "0.5em" 0))
     (tt
      (font-family ,mono)
-     (color ,lime)
-     (border "1px" ,base3 "solid"))
+     (color ,lime))
     (p
      (hyphens "auto")
      (-ms-hyphens "auto")
@@ -91,7 +90,7 @@
      (((// td) (// th))
       (padding 0 "0.1em"))
      ((& .footnote)
-      (border "0px")
+      (border-style "none")
       (display "block")
       (margin "0.5em" 0)
       ((// td)
