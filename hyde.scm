@@ -11,8 +11,9 @@
   (let* ((rst
           (make-external-translator
            "rst2html"
-           (lambda () (list "--link-stylesheet" "--smart-quotes=yes"
-                            "--trim-footnote-reference-space"))))
+           (lambda ()
+             '("--link-stylesheet" "--smart-quotes=yes"
+               "--syntax-highlight=short" "--trim-footnote-reference-space"))))
          (dom (with-input-from-string (with-output-to-string rst) html->sxml))
          (html (serialize-sxml ((sxpath "//body/div/node()") dom) indent: #f)))
       (display html)))
