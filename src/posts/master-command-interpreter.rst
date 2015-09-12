@@ -1,5 +1,5 @@
 ((title . "Master Command Interpreter")
- (date . "2015-05-27 07:20:10"))
+ (date . "2015-05-27 07:20:10 +0200"))
 
 The `command interpreter`_ abstraction is one of the noteworthy
 Emacs features that convinced me to turn away from Vim as editor,

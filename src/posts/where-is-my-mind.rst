@@ -1,5 +1,5 @@
 ((title . "Where Is My Mind?")
- (date . "2015-09-01 22:44:03"))
+ (date . "2015-09-01 22:44:03 +0200"))
 
 I've recently evaluated how I'd go at adding a TOC to my init.org_.
 Fortunately, toc-org_ is a thing.  If only things were as

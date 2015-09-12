@@ -1,5 +1,5 @@
 ((title . "Don't Stop the World")
- (date . "2015-03-29 00:31:31"))
+ (date . "2015-03-29 00:31:31 +0200"))
 
 Emacs being essentially an oversized, graphical REPL_ [1]_, is one of
 the reasons why it comes with `Garbage Collection`_ (which I will

@@ -1,5 +1,5 @@
 ((title . "IELM used SUBSTITUTE!")
- (date . "2015-08-07 10:25:41"))
+ (date . "2015-08-07 10:25:41 +0200"))
 
 IELM_ is a REPL_ for Emacs Lisp.  It is built upon comint_, a major
 mode for interacting with subprocesses that accept input and return

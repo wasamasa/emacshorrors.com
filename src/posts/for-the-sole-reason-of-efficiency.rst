@@ -1,5 +1,5 @@
 ((title . "For The Sole Reason of Efficiency")
- (date . "2015-07-26 15:56:46"))
+ (date . "2015-07-26 15:56:46 +0200"))
 
 .. code:: c
 

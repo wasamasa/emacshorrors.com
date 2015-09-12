@@ -1,5 +1,5 @@
 ((title . "The Vagabond")
- (date . "2015-06-29 00:55:28"))
+ (date . "2015-06-29 00:55:28 +0200"))
 
 Much has been said about TRAMP_, I've personally have tried it out a
 few times, then `disabled it for good`_ as I hated it regularly locking

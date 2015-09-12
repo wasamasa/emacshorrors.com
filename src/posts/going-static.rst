@@ -1,5 +1,5 @@
 ((title . "Going Static")
- (date . "2015-08-18 10:27:54"))
+ (date . "2015-08-18 10:27:54 +0200"))
 
 I'm not sure whether you did notice, but as the amount of whimsy posts
 grew, the page load times became increasingly intolerable.  This is

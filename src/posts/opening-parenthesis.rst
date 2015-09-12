@@ -1,5 +1,5 @@
 ((title . "OPENING PARENTHESIS")
- (date . "2015-05-01 10:20:26"))
+ (date . "2015-05-01 10:20:26 +0200"))
 
 Ever wondered about docstrings containing backslash-escaped opening
 parentheses, but only for the ones at the left-most column?  `Wonder

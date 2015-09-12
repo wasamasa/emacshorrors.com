@@ -9,4 +9,4 @@
                  (lambda (timestamp)
                    (rfc3339->string
                     (time->rfc3339
-                     (string->time timestamp "%Y-%m-%d %H:%M:%S")))))
+                     (string->time timestamp "%Y-%m-%d %H:%M:%S %z")))))

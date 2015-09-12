@@ -1,5 +1,5 @@
 ((title . "Don't bother")
- (date . "2015-07-22 15:37:42"))
+ (date . "2015-07-22 15:37:42 +0200"))
 
 All I planned to do was finding a source for the somewhat often
 mentioned "Emacs Lisp doesn't really have structs, it's just vectors

@@ -1,5 +1,5 @@
 ((title . "Attack of the Single-Letter Variables")
- (date . "2015-04-06 00:28:51"))
+ (date . "2015-04-06 00:28:51 +0200"))
 
 .. code:: elisp
 

@@ -1,5 +1,5 @@
 ((title . "New Blog")
- (date . "2015-08-27 14:16:08"))
+ (date . "2015-08-27 14:16:08 +0200"))
 
 It's `time for me to graduate`_ from taking cheap shots at Emacs
 sources and `write like no one's reading`_.  Don't worry though, I'll

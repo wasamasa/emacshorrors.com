@@ -1,5 +1,5 @@
 ((title . "Don't Modify the World")
- (date . "2015-07-14 11:21:15"))
+ (date . "2015-07-14 11:21:15 +0200"))
 
 Emacs comes with `a few thousand lines of code for calendar
 calculations`_.  Surely timezone calculations must be a properly

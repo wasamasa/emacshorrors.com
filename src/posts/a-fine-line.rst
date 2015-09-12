@@ -1,5 +1,5 @@
 ((title . "A Fine Line")
- (date . "2015-03-05 10:50:31"))
+ (date . "2015-03-05 10:50:31 +0200"))
 
 Makefile.in_ strikes again:
 

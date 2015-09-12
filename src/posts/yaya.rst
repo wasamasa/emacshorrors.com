@@ -1,5 +1,5 @@
 ((title . "YaYa")
- (date . "2015-03-17 10:59:59"))
+ (date . "2015-03-17 10:59:59 +0200"))
 
 I originally started writing this post because I'm using the pretty
 awesome Evil_ package and decided to look into the infamous Yasnippet_

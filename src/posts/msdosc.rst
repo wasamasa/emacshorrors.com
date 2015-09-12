@@ -1,5 +1,5 @@
 ((title . "msdos.c")
- (date . "2015-08-23 13:19:54"))
+ (date . "2015-08-23 13:19:54 +0200"))
 
 Did you know Emacs does not only `support the full range of Windows
 operating systems`_, but even `works on MS-DOS`_?  One would have

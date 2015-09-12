@@ -1,5 +1,5 @@
 ((title . "State of Art")
- (date . "2015-06-01 17:59:09"))
+ (date . "2015-06-01 17:59:09 +0200"))
 
 The Emacs C sources do come with the probably ugliest `indentation
 style`_ (as condemned by the `Linux kernel coding style guide`_):

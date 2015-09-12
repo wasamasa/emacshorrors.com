@@ -1,5 +1,5 @@
 ((title . "longlines-mode")
- (date . "2015-04-19 19:51:54"))
+ (date . "2015-04-19 19:51:54 +0200"))
 
 Sometimes there are files that are too wide to be displayed
 comfortably.  One option to deal with them is hard-wrapping or in

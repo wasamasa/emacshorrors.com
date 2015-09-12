@@ -1,5 +1,5 @@
 ((title . "The Tower Of BABYL")
- (date . "2015-09-12 10:42:25"))
+ (date . "2015-09-12 10:42:25 +0200"))
 
 I've finally found the proof of file-local variables being a hack:
 Every non-interactive function and variable dealing with them uses

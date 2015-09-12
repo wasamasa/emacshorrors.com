@@ -6,7 +6,7 @@
      (only posix seconds->local-time time->string))
 
 (let* ((title (list-ref (argv) 1))
-       (date (time->string (seconds->local-time) "%Y-%m-%d %H:%M:%S"))
+       (date (time->string (seconds->local-time) "%Y-%m-%d %H:%M:%S %z"))
        (path (make-pathname (format "~a/posts/" (source-dir))
                             (pathify title) ".rst")))
   (if (file-exists? path)

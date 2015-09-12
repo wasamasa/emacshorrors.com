@@ -1,5 +1,5 @@
 ((title . "Life Is Too Much")
- (date . "2015-06-25 12:32:17"))
+ (date . "2015-06-25 12:32:17 +0200"))
 
 I tried figuring out once what the right function would be to quit
 eshell_ programmatically.  Judging by the naming convention for other

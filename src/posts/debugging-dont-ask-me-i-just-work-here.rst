@@ -1,5 +1,5 @@
 ((title . "Debugging? Don't ask me, I just work here!")
- (date . "2015-08-14 00:16:47"))
+ (date . "2015-08-14 00:16:47 +0200"))
 
 cc-mode_ is about 20k SLOC of Emacs Lisp responsible for setting up
 major modes for C, C++ and other sufficiently C-like languages.  To

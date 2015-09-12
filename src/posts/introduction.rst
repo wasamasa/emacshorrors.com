@@ -1,5 +1,5 @@
 ((title . "Introduction")
- (date . "2015-02-23 20:24:30"))
+ (date . "2015-02-23 20:24:30 +0200"))
 
 .. role:: strike
    :class: strike

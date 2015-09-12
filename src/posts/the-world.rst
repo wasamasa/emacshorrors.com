@@ -1,5 +1,5 @@
 ((title . "The World")
- (date . "2015-03-13 11:18:11"))
+ (date . "2015-03-13 11:18:11 +0200"))
 
 Sometimes we forget that despite what observation of the emacs-devel_
 mailing list might suggest [1]_, Emacs core contributors are aware

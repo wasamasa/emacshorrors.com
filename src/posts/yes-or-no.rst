@@ -1,5 +1,5 @@
 ((title . "Yes or No?")
- (date . "2015-02-23 20:51:15"))
+ (date . "2015-02-23 20:51:15 +0200"))
 
 Sometimes an Emacs command isn't sure what to do next.  Any person who
 went beyond the tutorial will instantly recognize the ``(yes or no)``

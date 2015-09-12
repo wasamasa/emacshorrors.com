@@ -1,5 +1,5 @@
 ((title . "Over-engineered code is over-engineered")
- (date . "2015-08-10 22:20:26"))
+ (date . "2015-08-10 22:20:26 +0200"))
 
 Lars_ is one of the few `mononymous people`_ in the Emacs universe.
 His greatest contribution to Emacs would be Gnus_, a 100k SLOC heavy

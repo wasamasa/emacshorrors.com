@@ -1,5 +1,5 @@
 ((title . "Chirp, chirp")
- (date . "2015-08-02 11:30:14"))
+ (date . "2015-08-02 11:30:14 +0200"))
 
 V155_ casually mentioned on ``##emacs.de`` that twittering-mode_ has
 over ten thousand lines of code.  To further aid him in his evaluation
