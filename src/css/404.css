@@ -3,12 +3,17 @@
   margin: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 pre {
   padding: 0 0.5em;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .error {
+  min-height: 100%;
   border-left: #f2f2f2 0.5em solid;
   border-right: #f2f2f2 0.5em solid;
   font-family: 'Courier New', Courier, monospace;
@@ -16,6 +21,10 @@ pre {
 
 .modeline {
   padding: 0 0.5em;
+  position: fixed;
+  left: 0.5em;
+  right: 0.5em;
+  bottom: 1em;
   background-color: #bfbfbf;
   border: #fff 1px outset;
 }
