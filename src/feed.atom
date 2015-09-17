@@ -3,7 +3,7 @@
  (authors "Vasilij Schneidermann")
  (date . "") ; HACK: unused
  (base-uri . "http://emacshorrors.com")
- (tag . "http://emacshorrors.com/"))
+ (tag . "tag:http://emacshorrors.com,~a:~a"))
 (pages->atom-doc (latest-posts)
                  page-date->rfc3339-string:
                  (lambda (timestamp)
