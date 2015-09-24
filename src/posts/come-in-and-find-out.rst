@@ -1,5 +1,6 @@
 ((title . "Come In And Find Out!")
- (date . "2015-09-21 20:22:01 +0200"))
+ (date . "2015-09-21 20:22:01 +0200")
+ (updated . "2015-09-24 19:12:37 +0200"))
 
 Did you ever wonder how Emacs finds out whether you are using a dark
 or light background?  If you've themed it, it can just ask for the
@@ -50,6 +51,13 @@ with a dark background and wonder why it's looking `so different`_...
            (old-display-type
             (frame-parameter frame 'display-type)))
       ...)
+
+**Update**: There is no need to customize the ``default`` face or
+patch ``frame-default-bg-mode``, it's possible to set
+``frame-background-mode`` to either ``dark`` or ``light`` instead,
+similiar to Vim's ``background`` option.  Judging by their docs they
+use heuristics as well, but almost always default to a light
+background...
 
 .. _a hardcoded list of terminal emulators: http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/frame.el?id=db828f62f6f17414fbbc3206dac123dc73dd6055#n936
 .. _so different: http://emacs.stackexchange.com/q/16802/10
