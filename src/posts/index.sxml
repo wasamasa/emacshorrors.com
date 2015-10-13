@@ -1,4 +1,5 @@
-((title . "Archive"))
+((title . "Archive")
+ (layouts "page.sxml" "default.sxml"))
 `(table
   (@ (class "layout"))
   ,(map

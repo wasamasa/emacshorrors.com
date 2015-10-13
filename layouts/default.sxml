@@ -21,7 +21,7 @@
                             (car link)
                             `(a (@ (href ,(cdr link))) ,(car link)))))
                 '(("Index" . "/index.html")
-                  ("Archive" . "/archive.html")
+                  ("Archive" . "/posts/index.html")
                   ("Feed" . "/feed.atom")
                   ("About" . "/about.html")
                   ("Colophon" . "/colophon.html")
