@@ -1,12 +1,12 @@
 ((title . "Advertising Your Freedom")
  (date . "2015-12-14 23:40:02 +0100"))
 
-One of the first things people starting out with Emacs disable is the
-splash screen.  This is simple enough to do, all it requires is a
+One of the first things people starting out with Emacs do is disabling
+the splash screen.  This is simple enough to do, all it requires is a
 ``(setq inhibit-splash-screen t)``.  Now, that's not the only place
 Emacs uses to remind you of your freedoms.  If you pay attention to
 the small things involved in startup, you'll surely have noticed that
-it a more subtle notice in the echo area:
+it displays a more subtle notice in the echo area:
 
     For information about GNU Emacs and the GNU system, type C-h C-a.
 
