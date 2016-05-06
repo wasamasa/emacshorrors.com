@@ -4,6 +4,7 @@
    (@ (lang "en"))
    (head
     (meta (@ (charset "UTF-8")))
+    (meta (@ (name "viewport") (content "width=device-width, initial-scale=1.0")))
     (link (@ (href "/css/style.css") (rel "stylesheet") (type "text/css")))
     (link (@ (href "/css/code.css") (rel "stylesheet") (type "text/css")))
     (link (@ (href "/atom.xml") (rel "alternate") (type "application/atom+xml") (title "Atom 1.0")))
