@@ -1,5 +1,12 @@
 ((title . "PSA: Emacs is not a proper GTK application")
- (date . "2016-10-29 15:30:38 +0200"))
+ (date . "2016-10-29 15:30:38 +0200")
+ (updated . "2016-10-29 16:05:09 +0200"))
+
+**Update**: I've been pointed to `an emacs-devel discussion about
+giving Emacs a proper GTK frontend`_, most comparable to the Win32 and
+NS frontends (which are free from X11isms).  This would be a better
+approach than what's been outlined below, with the Cairo code being
+repurposed for the drawing bits.
 
 `Daniel Colascione's excellent write-up on bringing double-buffered
 rendering to Emacs`_ has prompted me to do the same on a set of
@@ -50,3 +57,4 @@ Further reading material:
 
 .. _Daniel Colascione's excellent write-up on bringing double-buffered rendering to Emacs: https://www.facebook.com/notes/daniel-colascione/buttery-smooth-emacs/10155313440066102
 .. _Broadway: https://developer.gnome.org/gtk3/stable/gtk-broadway.html
+.. _an emacs-devel discussion about giving Emacs a proper GTK frontend: https://lists.gnu.org/archive/html/emacs-devel/2016-10/msg00956.html
