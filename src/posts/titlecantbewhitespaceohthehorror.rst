@@ -1,5 +1,10 @@
 ((title . "\"titlecantbewhitespaceohthehorror\"")
- (date . "2016-01-22 23:48:23 +0100"))
+ (date . "2016-01-22 23:48:23 +0100")
+ (updated . "2016-10-29 12:40:01 +0200"))
+
+**Update**: Emacs is now using webkit2gtk and removed the title hack
+in favor of asynchronously executed JavaScript.  I expect that change
+to land in Emacs 25.2.
 
 ``xwidget.el`` has `made it`_ into Emacs 25!  You might wonder how
 exactly the interaction between a webkit widget and Emacs works.  The
