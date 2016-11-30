@@ -32,7 +32,9 @@
     ((.posts .post)
      (width "39em"))
     (.post
-     (padding "0.5em" 0))
+     (padding "0.5em" 0)
+     ((// li)
+      (margin 0 "1em")))
     (.page
      (width "39em"))
 
@@ -67,9 +69,6 @@
     (blockquote
      (padding 0 0 0 "1em")
      (border-left "8px" ,base3 "solid"))
-    (((ol ul))
-     (padding "0.5em" 0 "0.5em" "1.5em")
-     (list-style-position "outside"))
     (dd
      (padding "0.5em 1em"))
     (((p table))
