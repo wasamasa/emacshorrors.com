@@ -55,14 +55,14 @@ see whether you can find what's wrong about it:
         }
     }
 
-If you haven't spotted it, the function does never signal an exception
-for the exceptional case of an invalid key sequence.  Instead, it
-returns one of the few types that aren't allowed in a definition,
-namely an integer.  It's up to the caller to handle this case on their
-own, something the majority of Emacs packages rightfully neglect to do
-as even ``+`` informs you about invalid input.  This design decision
-reeks of `the many ways of signalling errors in C`_ and worse, cannot be
-properly fixed as there's code inside Emacs relying on the integer
+If you haven't spotted it, the function never signals an exception for
+the exceptional case of an invalid key sequence.  Instead, it returns
+one of the few types that aren't allowed in a definition, namely an
+integer.  It's up to the caller to handle this case on their own,
+something the majority of Emacs packages rightfully neglect to do as
+even ``+`` informs you about invalid input.  This design decision
+reeks of `the many ways of signalling errors in C`_ and worse, cannot
+be properly fixed as there's code inside Emacs relying on the integer
 return type.  There is even a ``lookup-key-ignore-too-long`` in Emacs
 core that looks a lot like what I wrote, but it's part of
 ``menu-bar.el`` for whatever reason and not advertised at all.
