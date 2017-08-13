@@ -1,5 +1,9 @@
 ((title . "make-temp-name")
- (date . "2017-07-18 09:14:57 +0200"))
+ (date . "2017-07-18 09:14:57 +0200")
+ (updated . "2017-08-13 20:37:32 +0200"))
+
+**Update**: Reddit points out that this has been fixed `on master`_ by
+replacing most of the code with a call to gnulib's ``gen_tempname``.
 
 For someone not terribly experienced in writing safe programs, one can
 only hope that building blocks like ``make-temp-file`` are doing the
@@ -221,6 +225,7 @@ not been able to find one worth subverting on GitHub yet.
 
 Thanks to ``dale`` on ``#emacs`` for bringing this to my attention!
 
+.. _on master: http://git.savannah.gnu.org/cgit/emacs.git/commit/?id=a6ad98ad66e1d0c0dac5f25ba91e11d0cf9da725
 .. _our own source of randomness: http://git.savannah.gnu.org/cgit/emacs.git/tree/src/fileio.c#n626
 .. _as follows: http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/files.el?id=0083123499cc29e301c197218d3809b225675e57#n1407
 .. _glibc: https://sourceware.org/git/?p=glibc.git;a=blob;f=sysdeps/posix/tempname.c;h=b00bd588ec458cbe3bc9bd162515995c0104248b;hb=HEAD
