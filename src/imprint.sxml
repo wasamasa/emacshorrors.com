@@ -6,6 +6,6 @@
    (tr (td (span (@ (class "key")) "Name:"))
        (td (span (@ (class "value")) "Vasilij Schneidermann")))
    (tr (td (span (@ (class "key")) "Address:"))
-       (td (span (@ (class "value")) "Rosmarstr. 7" (br) "50226 Frechen" (br) "Germany")))
+       (td (span (@ (class "value")) "Funkenstr. 37" (br) "50226 Frechen" (br) "Germany")))
    (tr (td (span (@ (class "key")) "Contact:"))
        (td (span (@ (class "value")) (span (@ (id "reverse")) "moc.liamg@nnamredienhcs.v"))))))
