@@ -34,7 +34,8 @@
     (.post
      (padding "0.5em" 0)
      ((// li)
-      (margin 0 "1em")))
+      (margin 0 "1em")
+      (text-align "justify")))
     (.page
      (width "39em"))
 
@@ -70,7 +71,8 @@
      (padding 0 0 0 "1em")
      (border-left "8px" ,base3 "solid"))
     (dd
-     (padding "0.5em 1em"))
+     (padding "0.5em 1em")
+     (text-align "justify"))
     (((p table))
      (margin "1em" 0))
     (pre
