@@ -10,6 +10,7 @@ html, body {
 pre {
   padding: 0 0.5em;
   font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap
 }
 
 .error {
@@ -21,7 +22,7 @@ pre {
 
 .modeline {
   padding: 0 0.5em;
-  position: fixed;
+  position: absolute;
   left: 0.5em;
   right: 0.5em;
   bottom: 1em;
