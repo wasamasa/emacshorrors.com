@@ -8,6 +8,7 @@
     (link (@ (href "/css/style.css") (rel "stylesheet") (type "text/css")))
     (link (@ (href "/css/code.css") (rel "stylesheet") (type "text/css")))
     (link (@ (href "/atom.xml") (rel "alternate") (type "application/atom+xml") (title "Atom 1.0")))
+    (link (@ (href "https://niu.moe/@wasamasa") (rel "me")))
     (title ,(string-append "Emacs Horrors - " ($ 'title))))
    (body
     (div
