@@ -1,11 +1,16 @@
-(use hyde
-     hyde-atom
-     irregex
-     html-parser
-     sxpath
-     sxml-serializer
-     posix
-     srfi-1)
+(import scheme)
+(import (chicken base))
+(import (chicken format))
+(import (chicken irregex))
+(import (chicken port))
+(import (chicken sort))
+(import (chicken time posix))
+(import (srfi 1))
+(import html-parser)
+(import hyde)
+(import (hyde atom))
+(import sxml-serializer)
+(import sxpath)
 
 (define (rst->html)
   (let* ((rst

@@ -1,9 +1,14 @@
 #!/usr/bin/env chicken-scheme
 ;; -*- mode: scheme; -*-
 
-(use (only hyde pathify source-dir)
-     (only files make-pathname)
-     (only posix seconds->local-time time->string))
+(import scheme)
+(import (chicken base))
+(import (chicken file))
+(import (chicken format))
+(import (chicken pathname))
+(import (chicken process-context))
+(import (chicken time posix))
+(import hyde)
 
 (let* ((title (list-ref (argv) 1))
        (date (time->string (seconds->local-time) "%Y-%m-%d %H:%M:%S %z"))

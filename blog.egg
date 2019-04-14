@@ -1,0 +1,4 @@
+((synopsis "emacshorrors blog")
+ (author "Vasilij Schneidermann")
+ (license "GPL-3")
+ (dependencies srfi-1 html-parser hyde sxml-serializer sxpath))
