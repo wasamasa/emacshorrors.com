@@ -17,7 +17,7 @@
 
 To ensure normal operation, you should investigate and check
 "
-      (a (@ (href "http://emacshorrors.com/")) "http://emacshorrors.com/")
+      (a (@ (href "https://emacshorrors.com/")) "https://emacshorrors.com/")
       " for the correct link to this website.")
      (span (@ (id "blink")) "*")
      (div

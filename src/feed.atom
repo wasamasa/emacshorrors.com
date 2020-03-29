@@ -2,8 +2,8 @@
  (subtitle . "Rants")
  (authors "Vasilij Schneidermann")
  (date . "") ; HACK: unused
- (base-uri . "http://emacshorrors.com")
- (tag . "tag:http://emacshorrors.com,~a:~a"))
+ (base-uri . "https://emacshorrors.com")
+ (tag . "tag:https://emacshorrors.com,~a:~a"))
 (pages->atom-doc (latest-posts)
                  page-date->rfc3339-string:
                  (lambda (timestamp)

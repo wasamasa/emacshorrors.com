@@ -19,6 +19,6 @@ now and often, that's all.
 
 For more serious articles, try `Emacs Ninja`_.
 
-.. _a comment by eevee: http://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/
-.. _#emacs IRC channel: http://www.emacswiki.org/emacs/EmacsChannel
-.. _Emacs Ninja: http://emacsninja.com/
+.. _a comment by eevee: https://eev.ee/blog/2012/04/09/php-a-fractal-of-bad-design/
+.. _#emacs IRC channel: https://www.emacswiki.org/emacs/EmacsChannel
+.. _Emacs Ninja: https://emacsninja.com/
