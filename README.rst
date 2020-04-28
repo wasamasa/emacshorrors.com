@@ -1,3 +1,1 @@
-Now Hackernews_ resilient!
-
-.. _Hackernews: https://news.ycombinator.com/
+Moved to https://depp.brause.cc/emacshorrors.com/
